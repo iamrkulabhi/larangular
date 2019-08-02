@@ -1,0 +1,42 @@
+<div class="mt-4 col-8 offset-2">
+  <div class="card">
+      <div class="card-header">
+          Signup
+      </div>
+      <div class="card-body">
+          <form #signupForm=ngForm (ngSubmit)="onSubmit()">
+
+              <div class="form-group">
+                  <label for="exampleInputName1">Name</label>
+                  <input type="text" name="name" [(ngModel)]="form.name" class="form-control" id="exampleInputName1" placeholder="Enter name" required>
+                  <div class="alert alert-danger" *ngIf="error.name">
+                      {{error.name}}
+                  </div>
+                </div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" name="email" [(ngModel)]="form.email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                      placeholder="Enter email" required>
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                      else.</small>
+                  <div class="alert alert-danger" *ngIf="error.email">
+                      {{error.email}}
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" name="password" [(ngModel)]="form.password" class="form-control" id="exampleInputPassword1" placeholder="Password" required minlength="5">
+                  <div class="alert alert-danger" *ngIf="error.password">
+                      {{error.password}}
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword2">Confirm Password</label>
+                <input type="password" name="password_confirmation" [(ngModel)]="form.password_confirmation" class="form-control" id="exampleInputPassword2" placeholder="Password" required minlength="5" (keyup)="checkPasswordConfirmed($event)" [ngClass]="{'not-confirmed': passwodNotConfirmed }">
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Signup</button>
+              <a class="btn btn-success float-right" routerLink="/login">Login</a>
+          </form>
+      </div>
+  </div>
+</div>
